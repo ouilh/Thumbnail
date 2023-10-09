@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" type="image/png" href="https://i.ibb.co/k0km76h/Logo.png">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link href="./static/css/style.css" rel="stylesheet"/>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <title>Video Thumbnail Extractor</title>
+</head>
+<body style="background-color:#0E1117">
+    
+  <style>
+      
+       
+  </style>
+    <form method="POST" action="/">
+        <div class="position-absolute top-50 start-50 translate-middle">
+           <em class="h1">Video <span style="color: rgb(96, 180, 255);">Thumbnail</span> Extractor</em>
+
+            
+        <br /> <br />
+        <p>Enter a video URL to get its thumbnail</p><br /><br />
+        <p>Video URL</p>
+        <input id="videoUrlInput" type="text"class="form-control" placeholder="Video Url" aria-label="Video Url" aria-describedby="addon-wrapping" name="video_url"  required >
+        <br>
+        <p>Thumbnail Quality:</p>
+        <select name="quality"class="form-select" >
+            <option value="1920x1080">1920x1080</option>
+            <option value="640x480">640x480</option>
+            <option value="480x360">480x360</option>
+            <option value="320x180">320x180</option>
+            <option value="120x90">120x90</option>
+        </select>
+        <img class="shadow" id="thumbnailpreview" src="images/placeholder.gif"
+                onerror="this.style.display='none'" />
+        <br>
+        <br />
+        <input type="button" id="getThumbnailBtn" class="btn btn-outline-success"value="Get Thumbnail"/>
+    <div id="thumbnailContainer"></div>
+    <br />
+        <input id="dis" type="submit"class="btn btn-outline-success" value="Download Thumbnail"></div>
+        <br /> <br />
+    </form>
+    
+</body>
+<script>
+
+
+</script>
+</html>
