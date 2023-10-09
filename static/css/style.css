@@ -196,3 +196,6 @@ p{
 .shadow {
   height: 200px;
 }
+.start-50 {
+  left: 50%!important;
+  width: 60%;}
