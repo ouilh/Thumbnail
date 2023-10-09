@@ -50,17 +50,10 @@ def index():
         if video_url:
             thumbnail_data = get_thumbnail(video_url, h, v)
             if thumbnail_data:
-                content_type = response.headers.get('content-type')
-
-        # Set the filename for the download.
-                filename = 'thumbnail.jpg'
-                image_response = Response(thumbnail_data, content_type=content_type)
-                image_response.headers['Content-Disposition'] = f'attachment; filename="{filename}"'
-
-                return image_response
+                return send_file(BytesIO(thumbnail_data), attachment_filename='thumbnail.jpg', as_attachment=False)
                 
 
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(debug=False,host='0.0.0.0')
+    app.run(debug=False,host='0.0.0.0',port=80)
