@@ -50,7 +50,7 @@ def index():
         if video_url:
             thumbnail_data = get_thumbnail(video_url, h, v)
             if thumbnail_data:
-                return send_file(BytesIO(thumbnail_data), attachment_filename='thumbnail.jpg', as_attachment=True)
+                return send_file(BytesIO(thumbnail_data), attachment_filename='thumbnail.jpg', as_attachment=False)
 
     return render_template("index.html")
 
