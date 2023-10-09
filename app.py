@@ -3,7 +3,6 @@ from pytube import YouTube
 import requests
 from PIL import Image
 from io import BytesIO
-import base64
 
 app = Flask(__name__)
 
@@ -51,10 +50,9 @@ def index():
         if video_url:
             thumbnail_data = get_thumbnail(video_url, h, v)
             if thumbnail_data:
-                thumbnail_base64 = base64.b64encode(thumbnail_data).decode("utf-8")
-                return thumbnail_base64
+                return send_file(BytesIO(thumbnail_data), attachment_filename='thumbnail.jpg', as_attachment=True)
 
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(debug=False,host='0.0.0.0', port=80)
+    app.run(debug=False,host='0.0.0.0')
