@@ -14,14 +14,24 @@ quality_mapping = {
     "120x90": 120,
 }
 
+def get_thumbnail(video_url, h, v):
+    try:
+        yt = YouTube(video_url)
+        if yt:
+            thumbnail_url = yt.thumbnail_url
+            response = requests.get(thumbnail_url)
+            img = Image.open(BytesIO(response.content))
+            img = img.resize((h, v), Image.ANTIALIAS)
+            resized_image_bytesio = BytesIO()
+            img.save(resized_image_bytesio, format='JPEG')
+            return resized_image_bytesio.getvalue()
+        else:
+            return None
+    except Exception as e:
+        return None
 
-    
-@app.route("/")
-def index():
-    return render_template('index.html')
 @app.route("/", methods=["GET", "POST"])
-
-def img():
+def index():
     if request.method == "POST":
         video_url = request.form["video_url"]
         quality = request.form["quality"]
@@ -41,23 +51,8 @@ def img():
             thumbnail_data = get_thumbnail(video_url, h, v)
             if thumbnail_data:
                 return send_file(BytesIO(thumbnail_data), attachment_filename='thumbnail.jpg', as_attachment=True)
-def get_thumbnail(video_url, h, v):
-    try:
-        yt = YouTube(video_url)
-        if yt:
-            thumbnail_url = yt.thumbnail_url
-            response = requests.get(thumbnail_url)
-            img = Image.open(BytesIO(response.content))
-            img = img.resize((h, v), Image.ANTIALIAS)
-            resized_image_bytesio = BytesIO()
-            img.save(resized_image_bytesio, format='JPEG')
-            return resized_image_bytesio.getvalue()
-        else:
-            return None
-    except Exception as e:
-        return None
 
-    
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(debug=False,host='0.0.0.0')
