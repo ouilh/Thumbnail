@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         button.style.display = "none";
                         submit.style.display = "block"
            
-            thumbnailContainer.innerHTML = `<img class="shadow" src="${thumbnailUrl}" alt="Video Thumbnail">`;
+            thumbnailContainer.innerHTML = `<a href="${thumbnailUrl}" download="thumbnail.jpg><img class="shadow" src="${thumbnailUrl}" alt="Video Thumbnail"></a>`;
         } else {
             thumbnailContainer.innerHTML = "Invalid YouTube URL";
         }
